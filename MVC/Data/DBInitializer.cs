@@ -333,7 +333,7 @@ namespace MVC.Data
                         new Models.StudentTerm{StudentTermID=17,StudentID="531506",TermID=2,TermLabel="Summer 2020"},
                         new Models.StudentTerm{StudentTermID=18,StudentID="531506",TermID=3,TermLabel="Fall 2020"},
                         new Models.StudentTerm{StudentTermID=19,StudentID="531506",TermID=4,TermLabel="Spring 2021"},
-                        new Models.StudentTerm{StudentTermID=20,StudentID="531506",TermID=5,TermLabel='Summer 2021"},
+                        new Models.StudentTerm{StudentTermID=20,StudentID="531506",TermID=5,TermLabel="Summer 2021"},
 
 
 
@@ -341,7 +341,7 @@ namespace MVC.Data
                 };
                 Console.WriteLine($"Inserted {studentTerms.Length} new studentTerms");
 
-                foreach (Models.Student st in studentTerms)
+                foreach (Models.StudentTerm st in studentTerms)
                 {
                     context.StudentTerms.Add(st);
                 }
