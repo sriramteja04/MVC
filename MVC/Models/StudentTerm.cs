@@ -9,7 +9,7 @@ namespace MVC.Models
     {
         public int StudentTermID { get; set; }
         public string StudentID { get; set; }
-        public int Term { get; set; }
+        public int TermID { get; set; }
         public string TermLabel { get; set; }
         
     }
