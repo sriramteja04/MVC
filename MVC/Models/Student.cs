@@ -12,5 +12,7 @@ namespace MVC.Models
         public string Last { get; set; }
         public string Snumber { get; set; }
         public int SID { get; set; }
+
+        public ICollection<Student> Students { get; set; }
     }
 }

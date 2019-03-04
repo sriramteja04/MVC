@@ -140,6 +140,64 @@ namespace MVC.Data
 
             }
 
+            if (context.Students.Any())
+            {
+                Console.WriteLine("Students already exist");
+            }
+            else
+            {
+                var students = new Models.Student[]
+                {
+                       new Models.Student{StudentID=531441,First="Vyshnavi srilaxmi",Last="Thannir",Snumber="531441",SID=919562404},
+                        new Models.Student{StudentID=531524,First="Sri Ram Teja",Last="Komerisetti",Snumber="531524",SID=919562444},
+                        new Models.Student{StudentID=530469,First="Chandra Mouli",Last="Kantipudi",Snumber="530469",SID=919559547},
+                        new Models.Student{StudentID=531506,First="Prashanth Kumar",Last="Thallada",Snumber="531506",SID=919562179},
+
+
+
+
+                };
+                Console.WriteLine($"Inserted {students.Length} new Students");
+
+                foreach (Models.Student s in students)
+                {
+                    context.Students.Add(s);
+                }
+                context.SaveChanges();
+
+            }
+
+            if (context.DegreePlans.Any())
+            {
+                Console.WriteLine("DegreePlans already exist");
+            }
+            else
+            {
+                var degreePlans = new Models.DegreePlan[]
+                {
+                new Models.DegreePlan{DegreePlanID=10,DegreeID=4,StudentID=531441,DegreePlanAbbrev="No summer off",DegreePlanName="As Fast as I Can"},
+                new Models.DegreePlan{DegreePlanID=11,DegreeID=4,StudentID=531441,DegreePlanAbbrev="Summer Off",DegreePlanName="Slow and Easy"},
+                new Models.DegreePlan{DegreePlanID=12,DegreeID=4,StudentID=531524,DegreePlanAbbrev="No summer off",DegreePlanName="As Fast as I Can"},
+                new Models.DegreePlan{DegreePlanID=13,DegreeID=4,StudentID=531524,DegreePlanAbbrev="Summer Off",DegreePlanName="Slow and Easy"},
+                new Models.DegreePlan{DegreePlanID=14,DegreeID=4,StudentID=531506,DegreePlanAbbrev="No summer off",DegreePlanName="As Fast as I Can"},
+                new Models.DegreePlan{DegreePlanID=15,DegreeID=4,StudentID=531506,DegreePlanAbbrev="Summer Off",DegreePlanName="Slow and Easy"},
+                new Models.DegreePlan{DegreePlanID=16,DegreeID=4,StudentID=530469,DegreePlanAbbrev="No summer off",DegreePlanName="As Fast as I Can"},
+                new Models.DegreePlan{DegreePlanID=17,DegreeID=4,StudentID=530469,DegreePlanAbbrev="Summer Off",DegreePlanName="Slow and Easy"},
+
+
+
+
+                };
+                Console.WriteLine($"Inserted {degreePlans.Length} new Requirements");
+
+                foreach (Models.DegreePlan dp in degreePlans)
+                {
+                    context.DegreePlans.Add(dp);
+                }
+                context.SaveChanges();
+
+            }
+
             if (context.DegreePlanTermRequirements.Any())
             {
                 Console.WriteLine("DegreePlanTermRequirements already exist");
@@ -248,63 +306,7 @@ namespace MVC.Data
 
             }
 
-            if (context.DegreePlans.Any())
-            {
-                Console.WriteLine("DegreePlans already exist");
-            }
-            else
-            {
-                var degreePlans = new Models.DegreePlan[]
-                {
-                new Models.DegreePlan{DegreePlanID=10,DegreeID=4,StudentID=531441,DegreePlanAbbrev="No summer off",DegreePlanName="As Fast as I Can"},
-                new Models.DegreePlan{DegreePlanID=11,DegreeID=4,StudentID=531441,DegreePlanAbbrev="Summer Off",DegreePlanName="Slow and Easy"},
-                new Models.DegreePlan{DegreePlanID=12,DegreeID=4,StudentID=531524,DegreePlanAbbrev="No summer off",DegreePlanName="As Fast as I Can"},
-                new Models.DegreePlan{DegreePlanID=13,DegreeID=4,StudentID=531524,DegreePlanAbbrev="Summer Off",DegreePlanName="Slow and Easy"},
-                new Models.DegreePlan{DegreePlanID=14,DegreeID=4,StudentID=531506,DegreePlanAbbrev="No summer off",DegreePlanName="As Fast as I Can"},
-                new Models.DegreePlan{DegreePlanID=15,DegreeID=4,StudentID=531506,DegreePlanAbbrev="Summer Off",DegreePlanName="Slow and Easy"},
-                new Models.DegreePlan{DegreePlanID=16,DegreeID=4,StudentID=530469,DegreePlanAbbrev="No summer off",DegreePlanName="As Fast as I Can"},
-                new Models.DegreePlan{DegreePlanID=17,DegreeID=4,StudentID=530469,DegreePlanAbbrev="Summer Off",DegreePlanName="Slow and Easy"},
-
-
-
-
-                };
-                Console.WriteLine($"Inserted {degreePlans.Length} new Requirements");
-
-                foreach (Models.DegreePlan dp in degreePlans)
-                {
-                    context.DegreePlans.Add(dp);
-                }
-                context.SaveChanges();
-
-            }
-
-            if (context.Students.Any())
-            {
-                Console.WriteLine("Students already exist");
-            }
-            else
-            {
-                var students = new Models.Student[]
-                {
-                       new Models.Student{StudentID=531441,First="Vyshnavi srilaxmi",Last="Thannir",Snumber="531441",SID=919562404},
-                        new Models.Student{StudentID=531524,First="Sri Ram Teja",Last="Komerisetti",Snumber="531524",SID=919562444},
-                        new Models.Student{StudentID=530469,First="Chandra Mouli",Last="Kantipudi",Snumber="530469",SID=919559547},
-                        new Models.Student{StudentID=531506,First="Prashanth Kumar",Last="Thallada",Snumber="531506",SID=919562179},
-
-
-
-
-                };
-                Console.WriteLine($"Inserted {students.Length} new Students");
-
-                foreach (Models.Student s in students)
-                {
-                    context.Students.Add(s);
-                }
-                context.SaveChanges();
-
-            }
+           
 
             if (context.StudentTerms.Any())
             {
