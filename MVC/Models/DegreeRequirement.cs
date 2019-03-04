@@ -12,5 +12,8 @@ namespace MVC.Models
         public int TermId { get; set; }
         public int RequirementID { get; set; }
 
+        public Degree Degree { get; set; }
+        public Requirement Requirement { get; set; }
+
     }
 }

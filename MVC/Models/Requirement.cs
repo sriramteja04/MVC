@@ -12,5 +12,7 @@ namespace MVC.Models
         public int RequirementID { get; set; }
         public String RequirementAbbrev { get; set; }
         public String RequirementName { get; set; }
+
+        public ICollection<DegreeRequirement> DegreeRequirements { get; set; }
     }
 }

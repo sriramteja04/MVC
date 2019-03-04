@@ -10,5 +10,8 @@ namespace MVC.Models
         public int DegreeID { get; set; }
         public string DegreeAbrrev { get; set; }
         public string DegreeName { get; set; }
+
+
+        public ICollection<DegreeRequirement> DegreeRequirements { get; set; }
     }
 }
