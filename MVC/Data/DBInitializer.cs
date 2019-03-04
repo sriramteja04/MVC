@@ -7,7 +7,7 @@ namespace MVC.Data
 {
     public class DBInitializer
     {
-        public static void SeedDb(ApplicationDbContext context)
+        public static void Initialize(ApplicationDbContext context)
         {
             if (context.Degrees.Any())
             {
