@@ -2,9 +2,9 @@
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace MVC.Data.Migrations
+namespace MVC.Migrations
 {
-    public partial class CreateIdentitySchema : Migration
+    public partial class Degrees : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -45,6 +45,68 @@ namespace MVC.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Degree",
+                columns: table => new
+                {
+                    DegreeID = table.Column<int>(nullable: false),
+                    DegreeAbrrev = table.Column<string>(nullable: true),
+                    DegreeName = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Degree", x => x.DegreeID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "DegreePlanTermRequirement",
+                columns: table => new
+                {
+                    DegreePlanTermRequirementID = table.Column<int>(nullable: false),
+                    DegreePlanID = table.Column<int>(nullable: false),
+                    TermID = table.Column<int>(nullable: false),
+                    RequirementID = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DegreePlanTermRequirement", x => x.DegreePlanTermRequirementID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Requirements",
+                columns: table => new
+                {
+                    RequirementID = table.Column<int>(nullable: false),
+                    RequirementAbbrev = table.Column<string>(nullable: true),
+                    RequirementName = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Requirements", x => x.RequirementID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Student",
+                columns: table => new
+                {
+                    StudentID = table.Column<int>(nullable: false),
+                    First = table.Column<string>(nullable: true),
+                    Last = table.Column<string>(nullable: true),
+                    Snumber = table.Column<string>(nullable: true),
+                    SID = table.Column<int>(nullable: false),
+                    StudentID1 = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Student", x => x.StudentID);
+                    table.ForeignKey(
+                        name: "FK_Student_Student_StudentID1",
+                        column: x => x.StudentID1,
+                        principalTable: "Student",
+                        principalColumn: "StudentID",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -153,6 +215,87 @@ namespace MVC.Data.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "DegreeRequirement",
+                columns: table => new
+                {
+                    DegreeRequirementID = table.Column<int>(nullable: false),
+                    DegreeID = table.Column<int>(nullable: false),
+                    TermId = table.Column<int>(nullable: false),
+                    RequirementID = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DegreeRequirement", x => x.DegreeRequirementID);
+                    table.ForeignKey(
+                        name: "FK_DegreeRequirement_Degree_DegreeID",
+                        column: x => x.DegreeID,
+                        principalTable: "Degree",
+                        principalColumn: "DegreeID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_DegreeRequirement_Requirements_RequirementID",
+                        column: x => x.RequirementID,
+                        principalTable: "Requirements",
+                        principalColumn: "RequirementID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "DegreePlan",
+                columns: table => new
+                {
+                    DegreePlanID = table.Column<int>(nullable: false),
+                    DegreeID = table.Column<int>(nullable: false),
+                    StudentID = table.Column<int>(nullable: false),
+                    DegreePlanAbbrev = table.Column<string>(nullable: true),
+                    DegreePlanName = table.Column<string>(nullable: true),
+                    DegreePlanID1 = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DegreePlan", x => x.DegreePlanID);
+                    table.ForeignKey(
+                        name: "FK_DegreePlan_Degree_DegreeID",
+                        column: x => x.DegreeID,
+                        principalTable: "Degree",
+                        principalColumn: "DegreeID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_DegreePlan_DegreePlan_DegreePlanID1",
+                        column: x => x.DegreePlanID1,
+                        principalTable: "DegreePlan",
+                        principalColumn: "DegreePlanID",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_DegreePlan_Student_StudentID",
+                        column: x => x.StudentID,
+                        principalTable: "Student",
+                        principalColumn: "StudentID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "StudentTerm",
+                columns: table => new
+                {
+                    StudentTermID = table.Column<int>(nullable: false),
+                    StudentID = table.Column<string>(nullable: true),
+                    TermID = table.Column<int>(nullable: false),
+                    TermLabel = table.Column<string>(nullable: true),
+                    StudentID1 = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_StudentTerm", x => x.StudentTermID);
+                    table.ForeignKey(
+                        name: "FK_StudentTerm_Student_StudentID1",
+                        column: x => x.StudentID1,
+                        principalTable: "Student",
+                        principalColumn: "StudentID",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -191,6 +334,41 @@ namespace MVC.Data.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DegreePlan_DegreeID",
+                table: "DegreePlan",
+                column: "DegreeID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DegreePlan_DegreePlanID1",
+                table: "DegreePlan",
+                column: "DegreePlanID1");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DegreePlan_StudentID",
+                table: "DegreePlan",
+                column: "StudentID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DegreeRequirement_DegreeID",
+                table: "DegreeRequirement",
+                column: "DegreeID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DegreeRequirement_RequirementID",
+                table: "DegreeRequirement",
+                column: "RequirementID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Student_StudentID1",
+                table: "Student",
+                column: "StudentID1");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_StudentTerm_StudentID1",
+                table: "StudentTerm",
+                column: "StudentID1");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -211,10 +389,31 @@ namespace MVC.Data.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "DegreePlan");
+
+            migrationBuilder.DropTable(
+                name: "DegreePlanTermRequirement");
+
+            migrationBuilder.DropTable(
+                name: "DegreeRequirement");
+
+            migrationBuilder.DropTable(
+                name: "StudentTerm");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Degree");
+
+            migrationBuilder.DropTable(
+                name: "Requirements");
+
+            migrationBuilder.DropTable(
+                name: "Student");
         }
     }
 }

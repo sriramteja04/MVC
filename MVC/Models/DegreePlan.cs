@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -7,6 +8,7 @@ namespace MVC.Models
 {
     public class DegreePlan
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int DegreePlanID { get; set; }
         public int DegreeID { get; set; }
         public int StudentID { get; set; }

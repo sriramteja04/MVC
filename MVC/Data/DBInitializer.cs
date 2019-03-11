@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace MVC.Data
 {
-    public class DBInitializer
+    public class DbInitializer
     {
         public static void Initialize(ApplicationDbContext context)
         {
@@ -167,6 +167,50 @@ namespace MVC.Data
 
             }
 
+
+            if (context.StudentTerms.Any())
+            {
+                Console.WriteLine("StudentTerms already exist");
+            }
+            else
+            {
+                var studentTerms = new Models.StudentTerm[]
+                {
+                        new Models.StudentTerm{StudentTermID=1,StudentID="531441",TermID=1,TermLabel="Fall 2017"},
+                        new Models.StudentTerm{StudentTermID=2,StudentID="531441",TermID=2,TermLabel="Spring 2018"},
+                        new Models.StudentTerm{StudentTermID=3,StudentID="531441",TermID=3,TermLabel="Summer 2018"},
+                        new Models.StudentTerm{StudentTermID=4,StudentID="531441",TermID=4,TermLabel="Fall 2018"},
+                        new Models.StudentTerm{StudentTermID=5,StudentID="531441",TermID=5,TermLabel="Spring 2019"},
+                        new Models.StudentTerm{StudentTermID=6,StudentID="531524",TermID=1,TermLabel="Spring 2018"},
+                        new Models.StudentTerm{StudentTermID=7,StudentID="531524",TermID=2,TermLabel="Summer 2018"},
+                        new Models.StudentTerm{StudentTermID=8,StudentID="531524",TermID=3,TermLabel="Fall 2018"},
+                        new Models.StudentTerm{StudentTermID=9,StudentID="531524",TermID=4,TermLabel="Spring 2019"},
+                        new Models.StudentTerm{StudentTermID=10,StudentID="531524",TermID=5,TermLabel="Summer 2019"},
+                        new Models.StudentTerm{StudentTermID=11,StudentID="530469",TermID=1,TermLabel="Fall 2018"},
+                        new Models.StudentTerm{StudentTermID=12,StudentID="530469",TermID=2,TermLabel="Spring 2019"},
+                        new Models.StudentTerm{StudentTermID=13,StudentID="530469",TermID=3,TermLabel="Summer 2019"},
+                        new Models.StudentTerm{StudentTermID=14,StudentID="530469",TermID=4,TermLabel="Fall 2019"},
+                        new Models.StudentTerm{StudentTermID=15,StudentID="530469",TermID=5,TermLabel="Spring 2020"},
+                        new Models.StudentTerm{StudentTermID=16,StudentID="531506",TermID=1,TermLabel="Spring 2020"},
+                        new Models.StudentTerm{StudentTermID=17,StudentID="531506",TermID=2,TermLabel="Summer 2020"},
+                        new Models.StudentTerm{StudentTermID=18,StudentID="531506",TermID=3,TermLabel="Fall 2020"},
+                        new Models.StudentTerm{StudentTermID=19,StudentID="531506",TermID=4,TermLabel="Spring 2021"},
+                        new Models.StudentTerm{StudentTermID=20,StudentID="531506",TermID=5,TermLabel="Summer 2021"},
+
+
+
+
+                };
+                Console.WriteLine($"Inserted {studentTerms.Length} new studentTerms");
+
+                foreach (Models.StudentTerm st in studentTerms)
+                {
+                    context.StudentTerms.Add(st);
+                }
+                context.SaveChanges();
+
+            }
+
             if (context.DegreePlans.Any())
             {
                 Console.WriteLine("DegreePlans already exist");
@@ -308,48 +352,7 @@ namespace MVC.Data
 
            
 
-            if (context.StudentTerms.Any())
-            {
-                Console.WriteLine("StudentTerms already exist");
-            }
-            else
-            {
-                var studentTerms = new Models.StudentTerm[]
-                {
-                        new Models.StudentTerm{StudentTermID=1,StudentID="531441",TermID=1,TermLabel="Fall 2017"},
-                        new Models.StudentTerm{StudentTermID=2,StudentID="531441",TermID=2,TermLabel="Spring 2018"},
-                        new Models.StudentTerm{StudentTermID=3,StudentID="531441",TermID=3,TermLabel="Summer 2018"},
-                        new Models.StudentTerm{StudentTermID=4,StudentID="531441",TermID=4,TermLabel="Fall 2018"},
-                        new Models.StudentTerm{StudentTermID=5,StudentID="531441",TermID=5,TermLabel="Spring 2019"},
-                        new Models.StudentTerm{StudentTermID=6,StudentID="531524",TermID=1,TermLabel="Spring 2018"},
-                        new Models.StudentTerm{StudentTermID=7,StudentID="531524",TermID=2,TermLabel="Summer 2018"},
-                        new Models.StudentTerm{StudentTermID=8,StudentID="531524",TermID=3,TermLabel="Fall 2018"},
-                        new Models.StudentTerm{StudentTermID=9,StudentID="531524",TermID=4,TermLabel="Spring 2019"},
-                        new Models.StudentTerm{StudentTermID=10,StudentID="531524",TermID=5,TermLabel="Summer 2019"},
-                        new Models.StudentTerm{StudentTermID=11,StudentID="530469",TermID=1,TermLabel="Fall 2018"},
-                        new Models.StudentTerm{StudentTermID=12,StudentID="530469",TermID=2,TermLabel="Spring 2019"},
-                        new Models.StudentTerm{StudentTermID=13,StudentID="530469",TermID=3,TermLabel="Summer 2019"},
-                        new Models.StudentTerm{StudentTermID=14,StudentID="530469",TermID=4,TermLabel="Fall 2019"},
-                        new Models.StudentTerm{StudentTermID=15,StudentID="530469",TermID=5,TermLabel="Spring 2020"},
-                        new Models.StudentTerm{StudentTermID=16,StudentID="531506",TermID=1,TermLabel="Spring 2020"},
-                        new Models.StudentTerm{StudentTermID=17,StudentID="531506",TermID=2,TermLabel="Summer 2020"},
-                        new Models.StudentTerm{StudentTermID=18,StudentID="531506",TermID=3,TermLabel="Fall 2020"},
-                        new Models.StudentTerm{StudentTermID=19,StudentID="531506",TermID=4,TermLabel="Spring 2021"},
-                        new Models.StudentTerm{StudentTermID=20,StudentID="531506",TermID=5,TermLabel="Summer 2021"},
-
-
-
-
-                };
-                Console.WriteLine($"Inserted {studentTerms.Length} new studentTerms");
-
-                foreach (Models.StudentTerm st in studentTerms)
-                {
-                    context.StudentTerms.Add(st);
-                }
-                context.SaveChanges();
-
-            }
+         
         }
     }
 }
