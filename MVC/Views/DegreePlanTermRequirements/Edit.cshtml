@@ -1,0 +1,44 @@
+﻿@model MVC.Models.DegreePlanTermRequirement
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>DegreePlanTermRequirement</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="DegreePlanTermRequirementID" />
+            <div class="form-group">
+                <label asp-for="DegreePlanID" class="control-label"></label>
+                <input asp-for="DegreePlanID" class="form-control" />
+                <span asp-validation-for="DegreePlanID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TermID" class="control-label"></label>
+                <input asp-for="TermID" class="form-control" />
+                <span asp-validation-for="TermID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RequirementID" class="control-label"></label>
+                <input asp-for="RequirementID" class="form-control" />
+                <span asp-validation-for="RequirementID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
