@@ -13,13 +13,13 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.DegreePlanID)
+                @Html.DisplayNameFor(model => model.TermId)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TermID)
+                @Html.DisplayNameFor(model => model.DegreePlan)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.RequirementID)
+                @Html.DisplayNameFor(model => model.Requirement)
             </th>
             <th></th>
         </tr>
@@ -28,18 +28,18 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.DegreePlanID)
+                @Html.DisplayFor(modelItem => item.TermId)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.TermID)
+                @Html.DisplayFor(modelItem => item.DegreePlan.DegreePlanId)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.RequirementID)
+                @Html.DisplayFor(modelItem => item.Requirement.RequirementId)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.DegreePlanTermRequirementID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.DegreePlanTermRequirementID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.DegreePlanTermRequirementID">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.DegreePlanTermRequirementId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.DegreePlanTermRequirementId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.DegreePlanTermRequirementId">Delete</a>
             </td>
         </tr>
 }

@@ -21,125 +21,119 @@ namespace MVC.Migrations
 
             modelBuilder.Entity("MVC.Models.Degree", b =>
                 {
-                    b.Property<int>("DegreeID");
+                    b.Property<int>("DegreeId");
 
                     b.Property<string>("DegreeAbrrev");
 
                     b.Property<string>("DegreeName");
 
-                    b.HasKey("DegreeID");
+                    b.HasKey("DegreeId");
 
                     b.ToTable("Degree");
                 });
 
             modelBuilder.Entity("MVC.Models.DegreePlan", b =>
                 {
-                    b.Property<int>("DegreePlanID");
+                    b.Property<int>("DegreePlanId");
 
-                    b.Property<int>("DegreeID");
+                    b.Property<int>("DegreeId");
 
                     b.Property<string>("DegreePlanAbbrev");
 
-                    b.Property<int?>("DegreePlanID1");
-
                     b.Property<string>("DegreePlanName");
 
-                    b.Property<int>("StudentID");
+                    b.Property<int>("StudentId");
 
-                    b.HasKey("DegreePlanID");
+                    b.HasKey("DegreePlanId");
 
-                    b.HasIndex("DegreeID");
+                    b.HasIndex("DegreeId");
 
-                    b.HasIndex("DegreePlanID1");
-
-                    b.HasIndex("StudentID");
+                    b.HasIndex("StudentId");
 
                     b.ToTable("DegreePlan");
                 });
 
             modelBuilder.Entity("MVC.Models.DegreePlanTermRequirement", b =>
                 {
-                    b.Property<int>("DegreePlanTermRequirementID");
+                    b.Property<int>("DegreePlanTermRequirementId");
 
-                    b.Property<int>("DegreePlanID");
+                    b.Property<int>("DegreePlanId");
 
-                    b.Property<int>("RequirementID");
+                    b.Property<int>("RequirementId");
 
-                    b.Property<int>("TermID");
+                    b.Property<int>("TermId");
 
-                    b.HasKey("DegreePlanTermRequirementID");
+                    b.HasKey("DegreePlanTermRequirementId");
+
+                    b.HasIndex("DegreePlanId");
+
+                    b.HasIndex("RequirementId");
 
                     b.ToTable("DegreePlanTermRequirement");
                 });
 
             modelBuilder.Entity("MVC.Models.DegreeRequirement", b =>
                 {
-                    b.Property<int>("DegreeRequirementID");
+                    b.Property<int>("DegreeRequirementId");
 
-                    b.Property<int>("DegreeID");
+                    b.Property<int>("DegreeId");
 
-                    b.Property<int>("RequirementID");
+                    b.Property<int>("RequirementId");
 
-                    b.Property<int>("TermId");
+                    b.HasKey("DegreeRequirementId");
 
-                    b.HasKey("DegreeRequirementID");
+                    b.HasIndex("DegreeId");
 
-                    b.HasIndex("DegreeID");
-
-                    b.HasIndex("RequirementID");
+                    b.HasIndex("RequirementId");
 
                     b.ToTable("DegreeRequirement");
                 });
 
             modelBuilder.Entity("MVC.Models.Requirement", b =>
                 {
-                    b.Property<int>("RequirementID");
+                    b.Property<int>("RequirementId");
 
                     b.Property<string>("RequirementAbbrev");
 
                     b.Property<string>("RequirementName");
 
-                    b.HasKey("RequirementID");
+                    b.HasKey("RequirementId");
 
                     b.ToTable("Requirements");
                 });
 
             modelBuilder.Entity("MVC.Models.Student", b =>
                 {
-                    b.Property<int>("StudentID");
+                    b.Property<int>("StudentId");
 
                     b.Property<string>("First");
 
                     b.Property<string>("Last");
 
-                    b.Property<int>("SID");
+                    b.Property<int>("SId");
 
                     b.Property<string>("Snumber");
 
-                    b.Property<int?>("StudentID1");
-
-                    b.HasKey("StudentID");
-
-                    b.HasIndex("StudentID1");
+                    b.HasKey("StudentId");
 
                     b.ToTable("Student");
                 });
 
             modelBuilder.Entity("MVC.Models.StudentTerm", b =>
                 {
-                    b.Property<int>("StudentTermID");
+                    b.Property<int>("StudentTermId");
 
-                    b.Property<string>("StudentID");
+                    b.Property<string>("StudentId");
 
-                    b.Property<int?>("StudentID1");
+                    b.Property<int?>("StudentId1");
 
-                    b.Property<int>("TermID");
+                    b.Property<int>("TermId");
 
                     b.Property<string>("TermLabel");
 
-                    b.HasKey("StudentTermID");
+                    b.HasKey("StudentTermId");
 
-                    b.HasIndex("StudentID1");
+                    b.HasIndex("StudentId1");
 
                     b.ToTable("StudentTerm");
                 });
@@ -313,44 +307,46 @@ namespace MVC.Migrations
                 {
                     b.HasOne("MVC.Models.Degree", "Degree")
                         .WithMany()
-                        .HasForeignKey("DegreeID")
+                        .HasForeignKey("DegreeId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("MVC.Models.DegreePlan")
-                        .WithMany("DegreePlans")
-                        .HasForeignKey("DegreePlanID1");
-
                     b.HasOne("MVC.Models.Student", "Student")
+                        .WithMany("DegreePlans")
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("MVC.Models.DegreePlanTermRequirement", b =>
+                {
+                    b.HasOne("MVC.Models.DegreePlan", "DegreePlan")
                         .WithMany()
-                        .HasForeignKey("StudentID")
+                        .HasForeignKey("DegreePlanId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("MVC.Models.Requirement", "Requirement")
+                        .WithMany()
+                        .HasForeignKey("RequirementId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("MVC.Models.DegreeRequirement", b =>
                 {
                     b.HasOne("MVC.Models.Degree", "Degree")
-                        .WithMany("DegreeRequirements")
-                        .HasForeignKey("DegreeID")
+                        .WithMany()
+                        .HasForeignKey("DegreeId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("MVC.Models.Requirement", "Requirement")
-                        .WithMany("DegreeRequirements")
-                        .HasForeignKey("RequirementID")
+                        .WithMany()
+                        .HasForeignKey("RequirementId")
                         .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("MVC.Models.Student", b =>
-                {
-                    b.HasOne("MVC.Models.Student")
-                        .WithMany("Students")
-                        .HasForeignKey("StudentID1");
                 });
 
             modelBuilder.Entity("MVC.Models.StudentTerm", b =>
                 {
                     b.HasOne("MVC.Models.Student", "Student")
-                        .WithMany()
-                        .HasForeignKey("StudentID1");
+                        .WithMany("StudentTerms")
+                        .HasForeignKey("StudentId1");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

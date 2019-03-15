@@ -27,18 +27,18 @@
             @Html.DisplayNameFor(model => model.Degree)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Degree.DegreeID)
+            @Html.DisplayFor(model => model.Degree.DegreeId)
         </dd class>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Student)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Student.StudentID)
+            @Html.DisplayFor(model => model.Student.StudentId)
         </dd class>
     </dl>
     
     <form asp-action="Delete">
-        <input type="hidden" asp-for="DegreePlanID" />
+        <input type="hidden" asp-for="DegreePlanId" />
         <input type="submit" value="Delete" class="btn btn-danger" /> |
         <a asp-action="Index">Back to List</a>
     </form>

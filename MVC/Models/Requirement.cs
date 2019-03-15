@@ -10,10 +10,9 @@ namespace MVC.Models
     {
 
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int RequirementID { get; set; }
+        public int RequirementId { get; set; }
         public String RequirementAbbrev { get; set; }
         public String RequirementName { get; set; }
-
-        public ICollection<DegreeRequirement> DegreeRequirements { get; set; }
+        
     }
 }

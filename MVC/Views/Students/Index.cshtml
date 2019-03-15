@@ -22,7 +22,7 @@
                 @Html.DisplayNameFor(model => model.Snumber)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.SID)
+                @Html.DisplayNameFor(model => model.SId)
             </th>
             <th></th>
         </tr>
@@ -40,12 +40,12 @@
                 @Html.DisplayFor(modelItem => item.Snumber)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.SID)
+                @Html.DisplayFor(modelItem => item.SId)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.StudentID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.StudentID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.StudentID">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.StudentId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.StudentId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.StudentId">Delete</a>
             </td>
         </tr>
 }

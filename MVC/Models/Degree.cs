@@ -9,11 +9,9 @@ namespace MVC.Models
     public class Degree
     {
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int DegreeID { get; set; }
+        public int DegreeId { get; set; }
         public string DegreeAbrrev { get; set; }
         public string DegreeName { get; set; }
 
-
-        public ICollection<DegreeRequirement> DegreeRequirements { get; set; }
     }
 }

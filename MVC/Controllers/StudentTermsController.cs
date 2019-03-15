@@ -34,7 +34,7 @@ namespace MVC.Controllers
             }
 
             var studentTerm = await _context.StudentTerms
-                .FirstOrDefaultAsync(m => m.StudentTermID == id);
+                .FirstOrDefaultAsync(m => m.StudentTermId == id);
             if (studentTerm == null)
             {
                 return NotFound();
@@ -54,7 +54,7 @@ namespace MVC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("StudentTermID,StudentID,TermID,TermLabel")] StudentTerm studentTerm)
+        public async Task<IActionResult> Create([Bind("StudentTermId,StudentId,TermId,TermLabel")] StudentTerm studentTerm)
         {
             if (ModelState.IsValid)
             {
@@ -86,9 +86,9 @@ namespace MVC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("StudentTermID,StudentID,TermID,TermLabel")] StudentTerm studentTerm)
+        public async Task<IActionResult> Edit(int id, [Bind("StudentTermId,StudentId,TermId,TermLabel")] StudentTerm studentTerm)
         {
-            if (id != studentTerm.StudentTermID)
+            if (id != studentTerm.StudentTermId)
             {
                 return NotFound();
             }
@@ -102,7 +102,7 @@ namespace MVC.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!StudentTermExists(studentTerm.StudentTermID))
+                    if (!StudentTermExists(studentTerm.StudentTermId))
                     {
                         return NotFound();
                     }
@@ -125,7 +125,7 @@ namespace MVC.Controllers
             }
 
             var studentTerm = await _context.StudentTerms
-                .FirstOrDefaultAsync(m => m.StudentTermID == id);
+                .FirstOrDefaultAsync(m => m.StudentTermId == id);
             if (studentTerm == null)
             {
                 return NotFound();
@@ -147,7 +147,7 @@ namespace MVC.Controllers
 
         private bool StudentTermExists(int id)
         {
-            return _context.StudentTerms.Any(e => e.StudentTermID == id);
+            return _context.StudentTerms.Any(e => e.StudentTermId == id);
         }
     }
 }

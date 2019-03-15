@@ -9,12 +9,13 @@ namespace MVC.Models
     public class Student
     {
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int StudentID { get; set; }
+        public int StudentId { get; set; }
         public string First { get; set; }
         public string Last { get; set; }
         public string Snumber { get; set; }
-        public int SID { get; set; }
+        public int SId { get; set; }
 
-        public ICollection<Student> Students { get; set; }
+        public ICollection<DegreePlan> DegreePlans { get; set; }
+        public ICollection<StudentTerm> StudentTerms { get; set; }
     }
 }

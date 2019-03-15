@@ -22,7 +22,8 @@ namespace MVC.Controllers
         // GET: DegreePlanTermRequirements
         public async Task<IActionResult> Index()
         {
-            return View(await _context.DegreePlanTermRequirements.ToListAsync());
+            var applicationDbContext = _context.DegreePlanTermRequirements.Include(d => d.DegreePlan).Include(d => d.Requirement);
+            return View(await applicationDbContext.ToListAsync());
         }
 
         // GET: DegreePlanTermRequirements/Details/5
@@ -34,7 +35,9 @@ namespace MVC.Controllers
             }
 
             var degreePlanTermRequirement = await _context.DegreePlanTermRequirements
-                .FirstOrDefaultAsync(m => m.DegreePlanTermRequirementID == id);
+                .Include(d => d.DegreePlan)
+                .Include(d => d.Requirement)
+                .FirstOrDefaultAsync(m => m.DegreePlanTermRequirementId == id);
             if (degreePlanTermRequirement == null)
             {
                 return NotFound();
@@ -46,6 +49,8 @@ namespace MVC.Controllers
         // GET: DegreePlanTermRequirements/Create
         public IActionResult Create()
         {
+            ViewData["DegreePlanId"] = new SelectList(_context.DegreePlans, "DegreePlanId", "DegreePlanId");
+            ViewData["RequirementId"] = new SelectList(_context.Requirements, "RequirementId", "RequirementId");
             return View();
         }
 
@@ -54,7 +59,7 @@ namespace MVC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("DegreePlanTermRequirementID,DegreePlanID,TermID,RequirementID")] DegreePlanTermRequirement degreePlanTermRequirement)
+        public async Task<IActionResult> Create([Bind("DegreePlanTermRequirementId,DegreePlanId,TermId,RequirementId")] DegreePlanTermRequirement degreePlanTermRequirement)
         {
             if (ModelState.IsValid)
             {
@@ -62,6 +67,8 @@ namespace MVC.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["DegreePlanId"] = new SelectList(_context.DegreePlans, "DegreePlanId", "DegreePlanId", degreePlanTermRequirement.DegreePlanId);
+            ViewData["RequirementId"] = new SelectList(_context.Requirements, "RequirementId", "RequirementId", degreePlanTermRequirement.RequirementId);
             return View(degreePlanTermRequirement);
         }
 
@@ -78,6 +85,8 @@ namespace MVC.Controllers
             {
                 return NotFound();
             }
+            ViewData["DegreePlanId"] = new SelectList(_context.DegreePlans, "DegreePlanId", "DegreePlanId", degreePlanTermRequirement.DegreePlanId);
+            ViewData["RequirementId"] = new SelectList(_context.Requirements, "RequirementId", "RequirementId", degreePlanTermRequirement.RequirementId);
             return View(degreePlanTermRequirement);
         }
 
@@ -86,9 +95,9 @@ namespace MVC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("DegreePlanTermRequirementID,DegreePlanID,TermID,RequirementID")] DegreePlanTermRequirement degreePlanTermRequirement)
+        public async Task<IActionResult> Edit(int id, [Bind("DegreePlanTermRequirementId,DegreePlanId,TermId,RequirementId")] DegreePlanTermRequirement degreePlanTermRequirement)
         {
-            if (id != degreePlanTermRequirement.DegreePlanTermRequirementID)
+            if (id != degreePlanTermRequirement.DegreePlanTermRequirementId)
             {
                 return NotFound();
             }
@@ -102,7 +111,7 @@ namespace MVC.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!DegreePlanTermRequirementExists(degreePlanTermRequirement.DegreePlanTermRequirementID))
+                    if (!DegreePlanTermRequirementExists(degreePlanTermRequirement.DegreePlanTermRequirementId))
                     {
                         return NotFound();
                     }
@@ -113,6 +122,8 @@ namespace MVC.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["DegreePlanId"] = new SelectList(_context.DegreePlans, "DegreePlanId", "DegreePlanId", degreePlanTermRequirement.DegreePlanId);
+            ViewData["RequirementId"] = new SelectList(_context.Requirements, "RequirementId", "RequirementId", degreePlanTermRequirement.RequirementId);
             return View(degreePlanTermRequirement);
         }
 
@@ -125,7 +136,9 @@ namespace MVC.Controllers
             }
 
             var degreePlanTermRequirement = await _context.DegreePlanTermRequirements
-                .FirstOrDefaultAsync(m => m.DegreePlanTermRequirementID == id);
+                .Include(d => d.DegreePlan)
+                .Include(d => d.Requirement)
+                .FirstOrDefaultAsync(m => m.DegreePlanTermRequirementId == id);
             if (degreePlanTermRequirement == null)
             {
                 return NotFound();
@@ -147,7 +160,7 @@ namespace MVC.Controllers
 
         private bool DegreePlanTermRequirementExists(int id)
         {
-            return _context.DegreePlanTermRequirements.Any(e => e.DegreePlanTermRequirementID == id);
+            return _context.DegreePlanTermRequirements.Any(e => e.DegreePlanTermRequirementId == id);
         }
     }
 }

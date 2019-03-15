@@ -12942,23 +12942,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\s531441\\.nuget\\packages\\": {},
+    "C:\\Users\\S530469\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\s531441\\Documents\\C# and .Net\\MVC\\MVC\\MVC.csproj",
+      "projectUniqueName": "C:\\Users\\S530469\\OneDrive - nwmissouri.edu\\Spring 2019\\MVC\\MVC\\MVC.csproj",
       "projectName": "MVC",
-      "projectPath": "C:\\Users\\s531441\\Documents\\C# and .Net\\MVC\\MVC\\MVC.csproj",
-      "packagesPath": "C:\\Users\\s531441\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\s531441\\Documents\\C# and .Net\\MVC\\MVC\\obj\\",
+      "projectPath": "C:\\Users\\S530469\\OneDrive - nwmissouri.edu\\Spring 2019\\MVC\\MVC\\MVC.csproj",
+      "packagesPath": "C:\\Users\\S530469\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\S530469\\OneDrive - nwmissouri.edu\\Spring 2019\\MVC\\MVC\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\s531441\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\S530469\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

@@ -37,15 +37,15 @@
                 @Html.DisplayFor(modelItem => item.DegreePlanName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Degree.DegreeID)
+                @Html.DisplayFor(modelItem => item.Degree.DegreeId)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Student.StudentID)
+                @Html.DisplayFor(modelItem => item.Student.StudentId)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.DegreePlanID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.DegreePlanID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.DegreePlanID">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.DegreePlanId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.DegreePlanId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.DegreePlanId">Delete</a>
             </td>
         </tr>
 }
