@@ -9,15 +9,26 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+
+<form asp-action="Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Find by Requirement Name: <input type="text" name="SearchString" value="@ViewData["currentFilter"]" />
+            <input type="submit" value="Search" class="btn btn-default" /> |
+            <a asp-action="Index">Back to Full List</a>
+        </p>
+    </div>
+</form>
+
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.RequirementAbbrev)
-            </th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["RequirementAbrrevSortParm"]">@Html.DisplayNameFor(model => model.RequirementAbbrev)</a>
+</th>
             <th>
-                @Html.DisplayNameFor(model => model.RequirementName)
-            </th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["RequirementNameSortParm"]">@Html.DisplayNameFor(model => model.RequirementName)</a>
+</th>
             <th></th>
         </tr>
     </thead>

@@ -20,10 +20,38 @@ namespace MVC.Controllers
         }
 
         // GET: DegreeRequirements
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder, string searchString)
         {
-            var applicationDbContext = _context.DegreeRequirements.Include(d => d.Degree).Include(d => d.Requirement);
-            return View(await applicationDbContext.ToListAsync());
+
+            ViewData["DegreeIDSortParm"] = sortOrder == "DegreeID" ? "degreeId_desc" : "";
+            ViewData["RequirementIDSortParm"] = sortOrder == "Requirement" ? "requirement_desc" : "Requirement";
+            ViewData["currentFilter"] = searchString;
+
+            var degreeRequirement = from s in _context.DegreeRequirements.Include(d => d.Degree).Include(d => d.Requirement)
+                         select s;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                degreeRequirement = degreeRequirement.Where(s => s.DegreeId == Convert.ToInt32(searchString));
+            }
+
+            switch (sortOrder)
+            {
+                case "degreeId_desc":
+                    degreeRequirement = degreeRequirement.OrderByDescending(s => s.DegreeId);
+                    break;
+                case "Requirement":
+                    degreeRequirement = degreeRequirement.OrderBy(s => s.RequirementId);
+                    break;
+                case "requirement_desc":
+                    degreeRequirement = degreeRequirement.OrderByDescending(s => s.RequirementId);
+                    break;
+                default:
+                    degreeRequirement = degreeRequirement.OrderBy(s => s.DegreeId);
+                    break;
+            }
+
+            return View(await degreeRequirement.AsNoTracking().ToListAsync());
         }
 
         // GET: DegreeRequirements/Details/5

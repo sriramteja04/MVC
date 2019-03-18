@@ -20,9 +20,37 @@ namespace MVC.Controllers
         }
 
         // GET: Degrees
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder, string searchString)
         {
-            return View(await _context.Degrees.ToListAsync());
+            ViewData["DegreeAbrrevSortParm"] = String.IsNullOrEmpty(sortOrder) ? "degreeAbrrev_desc" : "";
+            ViewData["DegreeNameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "degreeName_desc" : "DegreeName";
+            ViewData["currentFilter"] = searchString;
+
+            var degree = from s in _context.Degrees
+                                            select s;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                degree = degree.Where(s => s.DegreeAbrrev.Contains(searchString));
+            }
+
+            switch (sortOrder)
+            {
+                case "degreeAbrrev_desc":
+                    degree = degree.OrderByDescending(s => s.DegreeAbrrev);
+                    break;
+                case "DegreeName":
+                    degree = degree.OrderBy(s => s.DegreeName);
+                    break;
+                case "degreeName_desc":
+                    degree = degree.OrderByDescending(s => s.DegreeName);
+                    break;
+                default:
+                    degree = degree.OrderBy(s => s.DegreeAbrrev);
+                    break;
+            }
+
+            return View(await degree.AsNoTracking().ToListAsync());
         }
 
         // GET: Degrees/Details/5

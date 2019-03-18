@@ -20,10 +20,45 @@ namespace MVC.Controllers
         }
 
         // GET: DegreePlanTermRequirements
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder, string searchString)
         {
-            var applicationDbContext = _context.DegreePlanTermRequirements.Include(d => d.DegreePlan).Include(d => d.Requirement);
-            return View(await applicationDbContext.ToListAsync());
+
+            ViewData["TermIDSortParm"] = sortOrder == "Term" ? "termId_desc" : "";
+            ViewData["DegreePlanSortParm"] = sortOrder == "DegreePlan" ? "degreePlan_desc" : "DegreePlan";
+            ViewData["RequirementSortParm"] = sortOrder == "Requirement" ? "requirement_desc" : "Requirement";
+            ViewData["currentFilter"] = searchString;
+
+            var degreePlanTermRequirement = from s in _context.DegreePlanTermRequirements.Include(d => d.DegreePlan).Include(d => d.Requirement)
+                              select s;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                degreePlanTermRequirement = degreePlanTermRequirement.Where(s => s.TermId == Convert.ToInt32(searchString));
+            }
+
+            switch (sortOrder)
+            {
+                case "termID_desc":
+                    degreePlanTermRequirement = degreePlanTermRequirement.OrderByDescending(s => s.TermId);
+                    break;
+                case "DegreePlan":
+                    degreePlanTermRequirement = degreePlanTermRequirement.OrderBy(s => s.DegreePlanId);
+                    break;
+                case "degreePlan_desc":
+                    degreePlanTermRequirement = degreePlanTermRequirement.OrderByDescending(s => s.DegreePlanId);
+                    break;
+                case "Requirement":
+                    degreePlanTermRequirement = degreePlanTermRequirement.OrderBy(s => s.RequirementId);
+                    break;
+                case "requirement_desc":
+                    degreePlanTermRequirement = degreePlanTermRequirement.OrderByDescending(s => s.RequirementId);
+                    break;
+                default:
+                    degreePlanTermRequirement = degreePlanTermRequirement.OrderBy(s => s.TermId);
+                    break;
+            }
+
+            return View(await degreePlanTermRequirement.AsNoTracking().ToListAsync());
         }
 
         // GET: DegreePlanTermRequirements/Details/5
