@@ -37,3 +37,10 @@ Link to Issue tracker : https://github.com/sriramteja04/MVC/issues
 Using this link you can view the issues during the project 
 
 Display at least two screen shots showing your running application. 
+![image](https://user-images.githubusercontent.com/35507658/54849170-7c4f3980-4cb1-11e9-8594-f12876e78ca8.png)
+
+![image](https://user-images.githubusercontent.com/35507658/54849125-5a55b700-4cb1-11e9-90a1-bddcec994254.png)
+
+
+
+
