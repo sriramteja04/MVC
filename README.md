@@ -1,5 +1,5 @@
 # MVC
-#App Description
+# App Description
 
 **A website that helps the student to have a good planing and understanding of the subjects that he will be taking during every semester and useful to plan accordingly as per his requiremnt**
 
@@ -42,6 +42,8 @@ Using this link you can view the issues during the project
 ![image](https://user-images.githubusercontent.com/35507658/54849170-7c4f3980-4cb1-11e9-8594-f12876e78ca8.png)
 
 ![image](https://user-images.githubusercontent.com/35507658/54849125-5a55b700-4cb1-11e9-90a1-bddcec994254.png)
+
+# Cost Estimation
 
 | Cost Estimator         | Cost Estimation[$] |
 |------------------------|--------------------|
