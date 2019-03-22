@@ -41,6 +41,16 @@ Display at least two screen shots showing your running application.
 
 ![image](https://user-images.githubusercontent.com/35507658/54849125-5a55b700-4cb1-11e9-90a1-bddcec994254.png)
 
+| Cost Estimator         | Cost Estimation[$] |
+|------------------------|--------------------|
+| Take home hourly rate  | 40                 |
+| Multiplier             | 3                  |
+| Billing Rate           | 120                |
+| Developers             | 4                  |
+| Hours per developer    | 8                  |
+| Percent of total value | 80                 |
+    
+
 
 
 
