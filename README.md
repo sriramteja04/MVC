@@ -52,7 +52,7 @@ Using this link you can view the issues during the project
 | Billing Rate           | 120                |
 | Developers             | 4                  |
 | Hours per developer    | 8                  |
-| Percent of total value | 80%                |
+| Percent of total value | 80.5%                |
     
 
 
