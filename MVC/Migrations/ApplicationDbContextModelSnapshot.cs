@@ -27,6 +27,8 @@ namespace MVC.Migrations
 
                     b.Property<string>("DegreeName");
 
+                    b.Property<bool>("Done");
+
                     b.HasKey("DegreeId");
 
                     b.ToTable("Degree");
@@ -41,6 +43,8 @@ namespace MVC.Migrations
                     b.Property<string>("DegreePlanAbbrev");
 
                     b.Property<string>("DegreePlanName");
+
+                    b.Property<bool>("Done");
 
                     b.Property<int>("StudentId");
 
@@ -58,6 +62,8 @@ namespace MVC.Migrations
                     b.Property<int>("DegreePlanTermRequirementId");
 
                     b.Property<int>("DegreePlanId");
+
+                    b.Property<bool>("Done");
 
                     b.Property<int>("RequirementId");
 
@@ -78,6 +84,8 @@ namespace MVC.Migrations
 
                     b.Property<int>("DegreeId");
 
+                    b.Property<bool>("Done");
+
                     b.Property<int>("RequirementId");
 
                     b.HasKey("DegreeRequirementId");
@@ -93,6 +101,8 @@ namespace MVC.Migrations
                 {
                     b.Property<int>("RequirementId");
 
+                    b.Property<bool>("Done");
+
                     b.Property<string>("RequirementAbbrev");
 
                     b.Property<string>("RequirementName");
@@ -105,6 +115,8 @@ namespace MVC.Migrations
             modelBuilder.Entity("MVC.Models.Student", b =>
                 {
                     b.Property<int>("StudentId");
+
+                    b.Property<bool>("Done");
 
                     b.Property<string>("First");
 
@@ -122,6 +134,8 @@ namespace MVC.Migrations
             modelBuilder.Entity("MVC.Models.StudentTerm", b =>
                 {
                     b.Property<int>("StudentTermId");
+
+                    b.Property<bool>("Done");
 
                     b.Property<string>("StudentId");
 

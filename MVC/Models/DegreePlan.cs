@@ -14,6 +14,7 @@ namespace MVC.Models
         public int StudentId { get; set; }
         public string DegreePlanAbbrev { get; set; }
         public string DegreePlanName { get; set; }
+        public bool Done { get; set; }
 
         public Degree Degree { get; set; }
         public Student Student { get; set; }

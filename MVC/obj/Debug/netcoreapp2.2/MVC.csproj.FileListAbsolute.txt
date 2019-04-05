@@ -72,7 +72,6 @@ C:\Users\s531441\Documents\C# and .Net\MVC\MVC\bin\Debug\netcoreapp2.2\MVC.dll
 C:\Users\s531441\Documents\C# and .Net\MVC\MVC\bin\Debug\netcoreapp2.2\MVC.pdb
 C:\Users\s531441\Documents\C# and .Net\MVC\MVC\bin\Debug\netcoreapp2.2\MVC.Views.dll
 C:\Users\s531441\Documents\C# and .Net\MVC\MVC\bin\Debug\netcoreapp2.2\MVC.Views.pdb
-C:\Users\s531441\Documents\C# and .Net\MVC\MVC\obj\Debug\netcoreapp2.2\MVC.csprojAssemblyReference.cache
 C:\Users\s531441\Documents\C# and .Net\MVC\MVC\obj\Debug\netcoreapp2.2\MVC.csproj.CoreCompileInputs.cache
 C:\Users\s531441\Documents\C# and .Net\MVC\MVC\obj\Debug\netcoreapp2.2\MVC.RazorAssemblyInfo.cache
 C:\Users\s531441\Documents\C# and .Net\MVC\MVC\obj\Debug\netcoreapp2.2\MVC.RazorAssemblyInfo.cs
@@ -132,3 +131,4 @@ C:\Users\s531441\Documents\C# and .Net\MVC\MVC\obj\Debug\netcoreapp2.2\MVC.Views
 C:\Users\s531441\Documents\C# and .Net\MVC\MVC\obj\Debug\netcoreapp2.2\MVC.dll
 C:\Users\s531441\Documents\C# and .Net\MVC\MVC\obj\Debug\netcoreapp2.2\MVC.pdb
 C:\Users\s531441\Documents\C# and .Net\MVC\MVC\obj\Debug\netcoreapp2.2\MVC.csproj.CopyComplete
+C:\Users\s531441\Documents\C# and .Net\MVC\MVC\obj\Debug\netcoreapp2.2\MVC.csprojAssemblyReference.cache

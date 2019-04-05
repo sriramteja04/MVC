@@ -13,6 +13,7 @@ namespace MVC.Models
         public string StudentId { get; set; }
         public int TermId { get; set; }
         public string TermLabel { get; set; }
+        public bool Done { get; set; }
 
         public Student Student { get; set; }
         

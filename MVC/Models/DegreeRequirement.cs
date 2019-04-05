@@ -12,6 +12,7 @@ namespace MVC.Models
         public int DegreeRequirementId { get; set; }
         public int DegreeId { get; set; }
         public int RequirementId { get; set; }
+        public bool Done { get; set; }
 
         public Degree Degree { get; set; }
         public Requirement Requirement { get; set; }

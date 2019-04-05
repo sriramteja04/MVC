@@ -13,6 +13,7 @@ namespace MVC.Models
         public int RequirementId { get; set; }
         public String RequirementAbbrev { get; set; }
         public String RequirementName { get; set; }
-        
+        public bool Done { get; set; }
+
     }
 }
