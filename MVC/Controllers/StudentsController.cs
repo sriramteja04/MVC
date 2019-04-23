@@ -20,9 +20,51 @@ namespace MVC.Controllers
         }
 
         // GET: Students
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder, string searchString)
         {
-            return View(await _context.Students.ToListAsync());
+            ViewData["FirstNameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "firstName_desc" : "";
+            ViewData["LastNameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "lastName_desc" : "LastName";
+            ViewData["SNumberSortParm"] = sortOrder == "Snumber" ? "snumber_desc" : "SNumber";
+            ViewData["SIDSortParm"] = sortOrder == "SId" ? "sid_desc" : "SID";
+            ViewData["currentFilter"] = searchString;
+
+            var student = from s in _context.Students
+                          select s;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                student = student.Where(s => s.First.Contains(searchString) || s.Last.Contains(searchString));
+            }
+
+            switch (sortOrder)
+            {
+                case "firstName_desc":
+                    student = student.OrderByDescending(s => s.First);
+                    break;
+                case "LastName":
+                    student = student.OrderBy(s => s.Last);
+                    break;
+                case "lastName_desc":
+                    student = student.OrderByDescending(s => s.Last);
+                    break;
+                case "SNumber":
+                    student = student.OrderBy(s => s.Snumber);
+                    break;
+                case "snumber_desc":
+                    student = student.OrderByDescending(s => s.Snumber);
+                    break;
+                case "SID":
+                    student = student.OrderBy(s => s.SId);
+                    break;
+                case "sid_desc":
+                    student = student.OrderByDescending(s => s.SId);
+                    break;
+                default:
+                    student = student.OrderBy(s => s.First);
+                    break;
+            }
+
+            return View(await student.AsNoTracking().ToListAsync());
         }
 
         // GET: Students/Details/5
@@ -54,7 +96,7 @@ namespace MVC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("StudentId,First,Last,Snumber,SId,Done")] Student student)
+        public async Task<IActionResult> Create([Bind("StudentId,First,Last,Snumber,SId")] Student student)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +128,7 @@ namespace MVC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("StudentId,First,Last,Snumber,SId,Done")] Student student)
+        public async Task<IActionResult> Edit(int id, [Bind("StudentId,First,Last,Snumber,SId")] Student student)
         {
             if (id != student.StudentId)
             {

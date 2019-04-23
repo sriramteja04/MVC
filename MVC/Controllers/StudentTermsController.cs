@@ -20,9 +20,44 @@ namespace MVC.Controllers
         }
 
         // GET: StudentTerms
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder, string searchString)
         {
-            return View(await _context.StudentTerms.ToListAsync());
+            ViewData["StudentIDSortParm"] = String.IsNullOrEmpty(sortOrder) ? "studentID_desc" : "";
+            ViewData["TermLabelSortParm"] = String.IsNullOrEmpty(sortOrder) ? "termLabel_desc" : "TermLabel";
+            ViewData["TermIDSortParm"] = sortOrder == "TermId" ? "termID_desc" : "TermID";
+            ViewData["currentFilter"] = searchString;
+
+            var studentTerm = from s in _context.StudentTerms
+                              select s;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                studentTerm = studentTerm.Where(s => s.StudentId.Contains(searchString));
+            }
+
+            switch (sortOrder)
+            {
+                case "studentID_desc":
+                    studentTerm = studentTerm.OrderByDescending(s => s.StudentId);
+                    break;
+                case "TermLabel":
+                    studentTerm = studentTerm.OrderBy(s => s.TermLabel);
+                    break;
+                case "termLabel_desc":
+                    studentTerm = studentTerm.OrderByDescending(s => s.TermLabel);
+                    break;
+                case "TermID":
+                    studentTerm = studentTerm.OrderBy(s => s.TermId);
+                    break;
+                case "termID_desc":
+                    studentTerm = studentTerm.OrderByDescending(s => s.TermId);
+                    break;
+                default:
+                    studentTerm = studentTerm.OrderBy(s => s.StudentId);
+                    break;
+            }
+
+            return View(await studentTerm.AsNoTracking().ToListAsync());
         }
 
         // GET: StudentTerms/Details/5
@@ -54,7 +89,7 @@ namespace MVC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("StudentTermId,StudentId,TermId,TermLabel,Done")] StudentTerm studentTerm)
+        public async Task<IActionResult> Create([Bind("StudentTermId,StudentId,TermId,TermLabel")] StudentTerm studentTerm)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +121,7 @@ namespace MVC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("StudentTermId,StudentId,TermId,TermLabel,Done")] StudentTerm studentTerm)
+        public async Task<IActionResult> Edit(int id, [Bind("StudentTermId,StudentId,TermId,TermLabel")] StudentTerm studentTerm)
         {
             if (id != studentTerm.StudentTermId)
             {
