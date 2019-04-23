@@ -23,16 +23,22 @@
             @Html.DisplayFor(model => model.DegreePlanName)
         </dd>
         <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Done)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Done)
+        </dd>
+        <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Degree)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Degree.DegreeId)
+            @Html.DisplayFor(model => model.Degree.DegreeAbrrev)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Student)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Student.StudentId)
+            @Html.DisplayFor(model => model.Student.First)
         </dd>
     </dl>
 </div>

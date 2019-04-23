@@ -9,25 +9,14 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-
-<form asp-action="Index" method="get">
-    <div class="form-actions no-color">
-        <p>
-            Find by degree Abrrevation: <input type="text" name="SearchString" value="@ViewData["currentFilter"]" />
-            <input type="submit" value="Search" class="btn btn-default" /> |
-            <a asp-action="Index">Back to Full List</a>
-        </p>
-    </div>
-</form>
-
 <table class="table">
     <thead>
         <tr>
             <th>
-                <a asp-action="Index" asp-route-sortOrder="@ViewData["DegreeAbrrevSortParm"]">@Html.DisplayNameFor(model => model.DegreeAbrrev)</a>
+                @Html.DisplayNameFor(model => model.DegreeAbrrev)
             </th>
             <th>
-                <a asp-action="Index" asp-route-sortOrder="@ViewData["DegreeNameSortParm"]">@Html.DisplayNameFor(model => model.DegreeName)</a>
+                @Html.DisplayNameFor(model => model.DegreeName)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Done)

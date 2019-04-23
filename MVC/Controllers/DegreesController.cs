@@ -20,37 +20,9 @@ namespace MVC.Controllers
         }
 
         // GET: Degrees
-        public async Task<IActionResult> Index(string sortOrder, string searchString)
+        public async Task<IActionResult> Index()
         {
-            ViewData["DegreeAbrrevSortParm"] = String.IsNullOrEmpty(sortOrder) ? "degreeAbrrev_desc" : "";
-            ViewData["DegreeNameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "degreeName_desc" : "DegreeName";
-            ViewData["currentFilter"] = searchString;
-
-            var degree = from s in _context.Degrees
-                                            select s;
-
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                degree = degree.Where(s => s.DegreeAbrrev.Contains(searchString));
-            }
-
-            switch (sortOrder)
-            {
-                case "degreeAbrrev_desc":
-                    degree = degree.OrderByDescending(s => s.DegreeAbrrev);
-                    break;
-                case "DegreeName":
-                    degree = degree.OrderBy(s => s.DegreeName);
-                    break;
-                case "degreeName_desc":
-                    degree = degree.OrderByDescending(s => s.DegreeName);
-                    break;
-                default:
-                    degree = degree.OrderBy(s => s.DegreeAbrrev);
-                    break;
-            }
-
-            return View(await degree.AsNoTracking().ToListAsync());
+            return View(await _context.Degrees.ToListAsync());
         }
 
         // GET: Degrees/Details/5
@@ -82,7 +54,7 @@ namespace MVC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("DegreeId,DegreeAbrrev,DegreeName")] Degree degree)
+        public async Task<IActionResult> Create([Bind("DegreeId,DegreeAbrrev,DegreeName,Done")] Degree degree)
         {
             if (ModelState.IsValid)
             {
@@ -114,7 +86,7 @@ namespace MVC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("DegreeId,DegreeAbrrev,DegreeName")] Degree degree)
+        public async Task<IActionResult> Edit(int id, [Bind("DegreeId,DegreeAbrrev,DegreeName,Done")] Degree degree)
         {
             if (id != degree.DegreeId)
             {

@@ -27,5 +27,7 @@ namespace MVC.Models
 
         public Degree Degree { get; set; }
         public Student Student { get; set; }
+
+        public ICollection<StudentTerm> studentTerms { get; set; }
     }
 }
