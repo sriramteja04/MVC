@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MVC.Migrations
 {
-    public partial class Degree : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -52,8 +52,8 @@ namespace MVC.Migrations
                 columns: table => new
                 {
                     DegreeId = table.Column<int>(nullable: false),
-                    DegreeAbrrev = table.Column<string>(nullable: true),
-                    DegreeName = table.Column<string>(nullable: true),
+                    DegreeAbrrev = table.Column<string>(maxLength: 10, nullable: false),
+                    DegreeName = table.Column<string>(maxLength: 50, nullable: false),
                     Done = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
@@ -66,8 +66,8 @@ namespace MVC.Migrations
                 columns: table => new
                 {
                     RequirementId = table.Column<int>(nullable: false),
-                    RequirementAbbrev = table.Column<string>(nullable: true),
-                    RequirementName = table.Column<string>(nullable: true),
+                    RequirementAbbrev = table.Column<string>(maxLength: 10, nullable: false),
+                    RequirementName = table.Column<string>(maxLength: 50, nullable: false),
                     Done = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
@@ -80,9 +80,9 @@ namespace MVC.Migrations
                 columns: table => new
                 {
                     StudentId = table.Column<int>(nullable: false),
-                    First = table.Column<string>(nullable: true),
-                    Last = table.Column<string>(nullable: true),
-                    Snumber = table.Column<string>(nullable: true),
+                    First = table.Column<string>(maxLength: 50, nullable: false),
+                    Last = table.Column<string>(maxLength: 50, nullable: false),
+                    Snumber = table.Column<string>(maxLength: 50, nullable: false),
                     SId = table.Column<int>(nullable: false),
                     Done = table.Column<bool>(nullable: false)
                 },
@@ -230,8 +230,8 @@ namespace MVC.Migrations
                     DegreePlanId = table.Column<int>(nullable: false),
                     DegreeId = table.Column<int>(nullable: false),
                     StudentId = table.Column<int>(nullable: false),
-                    DegreePlanAbbrev = table.Column<string>(nullable: true),
-                    DegreePlanName = table.Column<string>(nullable: true),
+                    DegreePlanAbbrev = table.Column<string>(maxLength: 50, nullable: false),
+                    DegreePlanName = table.Column<string>(maxLength: 50, nullable: false),
                     Done = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
@@ -249,28 +249,6 @@ namespace MVC.Migrations
                         principalTable: "Student",
                         principalColumn: "StudentId",
                         onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "StudentTerm",
-                columns: table => new
-                {
-                    StudentTermId = table.Column<int>(nullable: false),
-                    StudentId = table.Column<string>(nullable: true),
-                    TermId = table.Column<int>(nullable: false),
-                    TermLabel = table.Column<string>(nullable: true),
-                    Done = table.Column<bool>(nullable: false),
-                    StudentId1 = table.Column<int>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_StudentTerm", x => x.StudentTermId);
-                    table.ForeignKey(
-                        name: "FK_StudentTerm_Student_StudentId1",
-                        column: x => x.StudentId1,
-                        principalTable: "Student",
-                        principalColumn: "StudentId",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -298,6 +276,35 @@ namespace MVC.Migrations
                         principalTable: "Requirements",
                         principalColumn: "RequirementId",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "StudentTerm",
+                columns: table => new
+                {
+                    StudentTermId = table.Column<int>(nullable: false),
+                    StudentId = table.Column<string>(nullable: true),
+                    TermId = table.Column<int>(nullable: false),
+                    TermLabel = table.Column<string>(maxLength: 50, nullable: false),
+                    Done = table.Column<bool>(nullable: false),
+                    DegreePlanId = table.Column<int>(nullable: true),
+                    StudentId1 = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_StudentTerm", x => x.StudentTermId);
+                    table.ForeignKey(
+                        name: "FK_StudentTerm_DegreePlan_DegreePlanId",
+                        column: x => x.DegreePlanId,
+                        principalTable: "DegreePlan",
+                        principalColumn: "DegreePlanId",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_StudentTerm_Student_StudentId1",
+                        column: x => x.StudentId1,
+                        principalTable: "Student",
+                        principalColumn: "StudentId",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
@@ -370,6 +377,11 @@ namespace MVC.Migrations
                 column: "RequirementId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_StudentTerm_DegreePlanId",
+                table: "StudentTerm",
+                column: "DegreePlanId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_StudentTerm_StudentId1",
                 table: "StudentTerm",
                 column: "StudentId1");
@@ -408,10 +420,10 @@ namespace MVC.Migrations
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "DegreePlan");
+                name: "Requirements");
 
             migrationBuilder.DropTable(
-                name: "Requirements");
+                name: "DegreePlan");
 
             migrationBuilder.DropTable(
                 name: "Degree");

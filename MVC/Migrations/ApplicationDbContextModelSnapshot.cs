@@ -23,9 +23,13 @@ namespace MVC.Migrations
                 {
                     b.Property<int>("DegreeId");
 
-                    b.Property<string>("DegreeAbrrev");
+                    b.Property<string>("DegreeAbrrev")
+                        .IsRequired()
+                        .HasMaxLength(10);
 
-                    b.Property<string>("DegreeName");
+                    b.Property<string>("DegreeName")
+                        .IsRequired()
+                        .HasMaxLength(50);
 
                     b.Property<bool>("Done");
 
@@ -40,9 +44,13 @@ namespace MVC.Migrations
 
                     b.Property<int>("DegreeId");
 
-                    b.Property<string>("DegreePlanAbbrev");
+                    b.Property<string>("DegreePlanAbbrev")
+                        .IsRequired()
+                        .HasMaxLength(50);
 
-                    b.Property<string>("DegreePlanName");
+                    b.Property<string>("DegreePlanName")
+                        .IsRequired()
+                        .HasMaxLength(50);
 
                     b.Property<bool>("Done");
 
@@ -103,9 +111,13 @@ namespace MVC.Migrations
 
                     b.Property<bool>("Done");
 
-                    b.Property<string>("RequirementAbbrev");
+                    b.Property<string>("RequirementAbbrev")
+                        .IsRequired()
+                        .HasMaxLength(10);
 
-                    b.Property<string>("RequirementName");
+                    b.Property<string>("RequirementName")
+                        .IsRequired()
+                        .HasMaxLength(50);
 
                     b.HasKey("RequirementId");
 
@@ -118,13 +130,19 @@ namespace MVC.Migrations
 
                     b.Property<bool>("Done");
 
-                    b.Property<string>("First");
+                    b.Property<string>("First")
+                        .IsRequired()
+                        .HasMaxLength(50);
 
-                    b.Property<string>("Last");
+                    b.Property<string>("Last")
+                        .IsRequired()
+                        .HasMaxLength(50);
 
                     b.Property<int>("SId");
 
-                    b.Property<string>("Snumber");
+                    b.Property<string>("Snumber")
+                        .IsRequired()
+                        .HasMaxLength(50);
 
                     b.HasKey("StudentId");
 
@@ -135,6 +153,8 @@ namespace MVC.Migrations
                 {
                     b.Property<int>("StudentTermId");
 
+                    b.Property<int?>("DegreePlanId");
+
                     b.Property<bool>("Done");
 
                     b.Property<string>("StudentId");
@@ -143,9 +163,13 @@ namespace MVC.Migrations
 
                     b.Property<int>("TermId");
 
-                    b.Property<string>("TermLabel");
+                    b.Property<string>("TermLabel")
+                        .IsRequired()
+                        .HasMaxLength(50);
 
                     b.HasKey("StudentTermId");
+
+                    b.HasIndex("DegreePlanId");
 
                     b.HasIndex("StudentId1");
 
@@ -358,7 +382,11 @@ namespace MVC.Migrations
 
             modelBuilder.Entity("MVC.Models.StudentTerm", b =>
                 {
-                    b.HasOne("MVC.Models.Student", "Student")
+                    b.HasOne("MVC.Models.DegreePlan", "DegreePlan")
+                        .WithMany("studentTerms")
+                        .HasForeignKey("DegreePlanId");
+
+                    b.HasOne("MVC.Models.Student")
                         .WithMany("StudentTerms")
                         .HasForeignKey("StudentId1");
                 });

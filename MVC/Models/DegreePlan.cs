@@ -16,12 +16,12 @@ namespace MVC.Models
 
         [Required]
         [Display(Name = "Degree Abbreviation")]
-        [StringLength(10, ErrorMessage = "Abbreviation cannot be longer than 10 characters.")]
+        [StringLength(50, ErrorMessage = "Abbreviation cannot be longer than 10 characters.")]
         public string DegreePlanAbbrev { get; set; }
 
         [Required]
         [Display(Name = "Degree Plan Name")]
-        [StringLength(10, ErrorMessage = "plan name cannot be longer than 10 characters.")]
+        [StringLength(50, ErrorMessage = "plan name cannot be longer than 50 characters.")]
         public string DegreePlanName { get; set; }
         public bool Done { get; set; }
 

@@ -17,7 +17,7 @@ namespace MVC.Models
 
         [Required]
         [Display(Name = "Term label")]
-        [StringLength(10, ErrorMessage = "term label cannot be longer than 10 characters.")]
+        [StringLength(50, ErrorMessage = "term label cannot be longer than 10 characters.")]
         public string TermLabel { get; set; }
 
         public bool Done { get; set; }

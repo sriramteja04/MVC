@@ -20,7 +20,7 @@ namespace MVC.Models
 
         [Required]
         [Display(Name = "Requirement name")]
-        [StringLength(10, ErrorMessage = "name cannot be longer than 10 characters.")]
+        [StringLength(50, ErrorMessage = "name cannot be longer than 10 characters.")]
         public String RequirementName { get; set; }
 
         public bool Done { get; set; }
