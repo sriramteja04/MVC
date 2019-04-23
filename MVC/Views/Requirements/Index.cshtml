@@ -1,47 +1,48 @@
 ﻿@model IEnumerable<MVC.Models.Requirement>
-
 @{
     ViewData["Title"] = "Index";
 }
-
 <h1>Index</h1>
-
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+<form asp-action="Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Find by Requirement Name: <input type="text" name="SearchString" value="@ViewData["currentFilter"]" />
+            <input type="submit" value="Search" class="btn btn-default" /> |
+            <a asp-action="Index">Back to Full List</a>
+        </p>
+    </div>
+</form>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.RequirementAbbrev)
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["RequirementAbrrevSortParm"]">@Html.DisplayNameFor(model => model.RequirementAbbrev)</a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.RequirementName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Done)
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["RequirementNameSortParm"]">@Html.DisplayNameFor(model => model.RequirementName)</a>
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.RequirementAbbrev)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RequirementName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Done)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.RequirementId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.RequirementId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.RequirementId">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RequirementAbbrev)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RequirementName)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.RequirementId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.RequirementId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.RequirementId">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
