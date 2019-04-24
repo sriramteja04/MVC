@@ -23,8 +23,9 @@ namespace MVC.Models
 
         public bool Done { get; set; }
 
-      //  public DegreePlan DegreePlan { get; set; } 
+        public ICollection<DegreePlanTermRequirement> DegreePlanTermRequirements { get; set; }
 
-        
+        public DegreePlan DegreePlan { get; set; }
+
     }
 }

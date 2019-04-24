@@ -28,8 +28,11 @@ namespace MVC.Models
         public bool Done { get; set; }
 
         public Degree Degree { get; set; }
+
         public Student Student { get; set; }
 
-        //public ICollection<StudentTerm> studentTerms { get; set; }
+        public DegreeStatus DegreeStatus { get; set; }
+
+        public ICollection<StudentTerm> studentTerms { get; set; }
     }
 }

@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MVC.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190424143308_Initial")]
+    [Migration("20190424205038_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -54,6 +54,8 @@ namespace MVC.Migrations
                         .IsRequired()
                         .HasMaxLength(50);
 
+                    b.Property<int?>("DegreeStatusId");
+
                     b.Property<bool>("Done");
 
                     b.Property<int>("StudentId");
@@ -61,6 +63,8 @@ namespace MVC.Migrations
                     b.HasKey("DegreePlanId");
 
                     b.HasIndex("DegreeId");
+
+                    b.HasIndex("DegreeStatusId");
 
                     b.HasIndex("StudentId");
 
@@ -77,6 +81,10 @@ namespace MVC.Migrations
 
                     b.Property<int>("RequirementId");
 
+                    b.Property<int?>("RequirementStatusId");
+
+                    b.Property<int?>("StudentTermId");
+
                     b.Property<int>("TermId");
 
                     b.HasKey("DegreePlanTermRequirementId");
@@ -84,6 +92,10 @@ namespace MVC.Migrations
                     b.HasIndex("DegreePlanId");
 
                     b.HasIndex("RequirementId");
+
+                    b.HasIndex("RequirementStatusId");
+
+                    b.HasIndex("StudentTermId");
 
                     b.ToTable("DegreePlanTermRequirement");
                 });
@@ -109,6 +121,19 @@ namespace MVC.Migrations
                     b.ToTable("DegreeRequirement");
                 });
 
+            modelBuilder.Entity("MVC.Models.DegreeStatus", b =>
+                {
+                    b.Property<int>("DegreeStatusId");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasMaxLength(15);
+
+                    b.HasKey("DegreeStatusId");
+
+                    b.ToTable("DegreeStatus");
+                });
+
             modelBuilder.Entity("MVC.Models.Requirement", b =>
                 {
                     b.Property<int>("RequirementId");
@@ -126,6 +151,19 @@ namespace MVC.Migrations
                     b.HasKey("RequirementId");
 
                     b.ToTable("Requirements");
+                });
+
+            modelBuilder.Entity("MVC.Models.RequirementStatus", b =>
+                {
+                    b.Property<int>("RequirementStatusId");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasMaxLength(15);
+
+                    b.HasKey("RequirementStatusId");
+
+                    b.ToTable("RequirementStatus");
                 });
 
             modelBuilder.Entity("MVC.Models.Student", b =>
@@ -157,6 +195,8 @@ namespace MVC.Migrations
                 {
                     b.Property<int>("StudentTermId");
 
+                    b.Property<int?>("DegreePlanId");
+
                     b.Property<bool>("Done");
 
                     b.Property<string>("StudentId");
@@ -170,6 +210,8 @@ namespace MVC.Migrations
                         .HasMaxLength(50);
 
                     b.HasKey("StudentTermId");
+
+                    b.HasIndex("DegreePlanId");
 
                     b.HasIndex("StudentId1");
 
@@ -348,6 +390,10 @@ namespace MVC.Migrations
                         .HasForeignKey("DegreeId")
                         .OnDelete(DeleteBehavior.Cascade);
 
+                    b.HasOne("MVC.Models.DegreeStatus", "DegreeStatus")
+                        .WithMany()
+                        .HasForeignKey("DegreeStatusId");
+
                     b.HasOne("MVC.Models.Student", "Student")
                         .WithMany("DegreePlans")
                         .HasForeignKey("StudentId")
@@ -365,6 +411,14 @@ namespace MVC.Migrations
                         .WithMany()
                         .HasForeignKey("RequirementId")
                         .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("MVC.Models.RequirementStatus", "RequirementStatus")
+                        .WithMany()
+                        .HasForeignKey("RequirementStatusId");
+
+                    b.HasOne("MVC.Models.StudentTerm")
+                        .WithMany("DegreePlanTermRequirements")
+                        .HasForeignKey("StudentTermId");
                 });
 
             modelBuilder.Entity("MVC.Models.DegreeRequirement", b =>
@@ -382,6 +436,10 @@ namespace MVC.Migrations
 
             modelBuilder.Entity("MVC.Models.StudentTerm", b =>
                 {
+                    b.HasOne("MVC.Models.DegreePlan", "DegreePlan")
+                        .WithMany("studentTerms")
+                        .HasForeignKey("DegreePlanId");
+
                     b.HasOne("MVC.Models.Student")
                         .WithMany("StudentTerms")
                         .HasForeignKey("StudentId1");
