@@ -4,42 +4,63 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<h2>Details</h2>
 
 <div>
     <h4>Student</h4>
     <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
+    <dl class="dl-horizontal">
+        <dt>
             @Html.DisplayNameFor(model => model.First)
         </dt>
-        <dd class = "col-sm-10">
+        <dd>
             @Html.DisplayFor(model => model.First)
         </dd>
-        <dt class = "col-sm-2">
+        <dt>
             @Html.DisplayNameFor(model => model.Last)
         </dt>
-        <dd class = "col-sm-10">
+        <dd>
             @Html.DisplayFor(model => model.Last)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Snumber)
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DegreePlans)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Snumber)
+        <dd>
+            <table class="table">
+                <tr>
+                    <th>Degree</th>
+                    <th>Plan Number</th>
+                    <th>Plan Abbrev</th>
+                    <th>Plan Name</th>
+                    <th>Degree Status</th>
+            
+                </tr>
+                @foreach (var item in Model.DegreePlans.OrderBy(p => p.DegreePlanId))
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DegreeId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DegreePlanId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DegreePlanAbbrev)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DegreePlanName)
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-controller="StudentDegreePlans" asp-route-id="@item.DegreePlanId">Plan</a>
+                        </td>
+                    </tr>
+                }
+            </table>
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.SId)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.SId)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Done)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Done)
-        </dd>
+
+
     </dl>
 </div>
 <div>
