@@ -123,6 +123,14 @@ namespace MVC.Controllers
             }
 
             var degreePlan = await _context.DegreePlans.FindAsync(id);
+            if (id == null) { return NotFound(); }
+
+            var studentDegreePlan = await _context.DegreePlans.Include(p => p.Student).SingleOrDefaultAsync(m => m.DegreePlanId == id);
+            ViewData["DegreeId"] = new SelectList(_context.Degrees, "DegreeId", "DegreeId", degreePlan.DegreeId);
+            ViewData["StudentId"] = new SelectList(_context.Students, "StudentId", "StudentId", degreePlan.StudentId);
+            return View(degreePlan);
+
+
             if (degreePlan == null)
             {
                 return NotFound();
