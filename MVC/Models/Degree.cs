@@ -10,6 +10,7 @@ namespace MVC.Models
     public class Degree
     {
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [Display(Name = "Degree ID")]
         public int DegreeId { get; set; }
 
         [Required]
@@ -24,6 +25,8 @@ namespace MVC.Models
 
 
         public bool Done { get; set; }
+
+        public ICollection<DegreeRequirement> DegreeRequirements { get; set; }
 
     }
 }

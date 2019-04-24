@@ -9,25 +9,24 @@
 <div>
     <h4>Degree</h4>
     <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DegreeAbrrev)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.DegreeAbrrev)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DegreeName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.DegreeName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Done)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Done)
-        </dd>
+    <dl class="dl-horizontal">
+        <dt>@Html.DisplayNameFor(model => model.DegreeName) </dt>
+        <dd>@Html.DisplayFor(model => model.DegreeName)</dd>
+        <dt>@Html.DisplayNameFor(model => model.DegreeRequirements)  </dt>
+        <dd>
+            <table class="table">
+                <tr>
+                    <th>RequirmentId</th>
+                    <th>Requirement Name</th>
+                </tr>
+                @foreach (var item in Model.DegreeRequirements.OrderBy(r => r.DegreeRequirementId))
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.DegreeRequirementId) </td>
+                        <td>@Html.DisplayFor(modelItem => item.RequirementName)   </td>
+                    </tr>
+                }
+            </table>
     </dl>
 </div>
 <div>

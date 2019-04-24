@@ -11,6 +11,7 @@ namespace MVC.Models
     {
 
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [Display(Name = "Requirement Id")]
         public int RequirementId { get; set; }
 
         [Required]

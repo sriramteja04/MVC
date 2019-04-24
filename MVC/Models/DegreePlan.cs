@@ -11,7 +11,9 @@ namespace MVC.Models
     {
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int DegreePlanId { get; set; }
+        [ForeignKey("DegreeId")]
         public int DegreeId { get; set; }
+        [ForeignKey("StudentId")]
         public int StudentId { get; set; }
 
         [Required]
@@ -28,6 +30,6 @@ namespace MVC.Models
         public Degree Degree { get; set; }
         public Student Student { get; set; }
 
-        public ICollection<StudentTerm> studentTerms { get; set; }
+        //public ICollection<StudentTerm> studentTerms { get; set; }
     }
 }

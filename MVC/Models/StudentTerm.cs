@@ -12,6 +12,7 @@ namespace MVC.Models
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int StudentTermId { get; set; }
 
+
         public string StudentId { get; set; }
         public int TermId { get; set; }
 
@@ -22,7 +23,7 @@ namespace MVC.Models
 
         public bool Done { get; set; }
 
-        public DegreePlan DegreePlan { get; set; } 
+      //  public DegreePlan DegreePlan { get; set; } 
 
         
     }

@@ -96,6 +96,8 @@ namespace MVC.Migrations
 
                     b.Property<int>("RequirementId");
 
+                    b.Property<string>("RequirementName");
+
                     b.HasKey("DegreeRequirementId");
 
                     b.HasIndex("DegreeId");
@@ -153,8 +155,6 @@ namespace MVC.Migrations
                 {
                     b.Property<int>("StudentTermId");
 
-                    b.Property<int?>("DegreePlanId");
-
                     b.Property<bool>("Done");
 
                     b.Property<string>("StudentId");
@@ -168,8 +168,6 @@ namespace MVC.Migrations
                         .HasMaxLength(50);
 
                     b.HasKey("StudentTermId");
-
-                    b.HasIndex("DegreePlanId");
 
                     b.HasIndex("StudentId1");
 
@@ -370,7 +368,7 @@ namespace MVC.Migrations
             modelBuilder.Entity("MVC.Models.DegreeRequirement", b =>
                 {
                     b.HasOne("MVC.Models.Degree", "Degree")
-                        .WithMany()
+                        .WithMany("DegreeRequirements")
                         .HasForeignKey("DegreeId")
                         .OnDelete(DeleteBehavior.Cascade);
 
@@ -382,10 +380,6 @@ namespace MVC.Migrations
 
             modelBuilder.Entity("MVC.Models.StudentTerm", b =>
                 {
-                    b.HasOne("MVC.Models.DegreePlan", "DegreePlan")
-                        .WithMany("studentTerms")
-                        .HasForeignKey("DegreePlanId");
-
                     b.HasOne("MVC.Models.Student")
                         .WithMany("StudentTerms")
                         .HasForeignKey("StudentId1");

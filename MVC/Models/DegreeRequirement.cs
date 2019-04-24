@@ -10,8 +10,11 @@ namespace MVC.Models
     {
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int DegreeRequirementId { get; set; }
+        [ForeignKey("DegreeId")]
         public int DegreeId { get; set; }
+        [ForeignKey("RequirementId")]
         public int RequirementId { get; set; }
+        public string RequirementName { get; set; }
         public bool Done { get; set; }
 
         public Degree Degree { get; set; }
