@@ -9,6 +9,9 @@
 - Sri Ram Teja Komerisetti
 - Prashanth Kumar Thallada
 
+# Team slide with names
+![screenshot 10](https://user-images.githubusercontent.com/31714306/52661753-52437400-2ec8-11e9-9fad-82dd146b38b9.png)
+
 # Prerequisites 
 
 - Visual Studio 
@@ -33,10 +36,11 @@
 - Update-Database
 - Then buid the project and run it. 
 It should be working fine 
-
-
+# Link to Commit History : https://github.com/sriramteja04/MVC/commits/master
+Using this link you can view the issues during the project
 # Link to Issue tracker : https://github.com/sriramteja04/MVC/issues
 Using this link you can view the issues during the project 
+
 
 # Display of running application. 
 ![image](https://user-images.githubusercontent.com/35507658/54849170-7c4f3980-4cb1-11e9-8594-f12876e78ca8.png)
