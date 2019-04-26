@@ -43,9 +43,21 @@ Using this link you can view the issues during the project
 
 
 # Display of running application. 
+
+# Students :
+
 ![image](https://user-images.githubusercontent.com/35507658/54849170-7c4f3980-4cb1-11e9-8594-f12876e78ca8.png)
 
+# Degree : 
 ![image](https://user-images.githubusercontent.com/35507658/54849125-5a55b700-4cb1-11e9-90a1-bddcec994254.png)
+
+# Displaying all Degrees:
+![Screenshot (190)](https://user-images.githubusercontent.com/35507658/56828575-342eb400-6827-11e9-905f-bd98a55b038b.png)
+
+# Students:
+![Screenshot (189)](https://user-images.githubusercontent.com/35507658/56828496-0d707d80-6827-11e9-9d27-efa90c30e7c1.png)
+
+
 
 # Cost Estimation
 
