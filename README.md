@@ -36,11 +36,16 @@
 - Update-Database
 - Then buid the project and run it. 
 It should be working fine 
+#  Deployed code :
+https://appmvcnew.azurewebsites.net/
+
 # Link to Commit History : https://github.com/sriramteja04/MVC/commits/master
 Using this link you can view the issues during the project
 # Link to Issue tracker : https://github.com/sriramteja04/MVC/issues
 Using this link you can view the issues during the project 
 
+# Code Deployment Procedure : 
+https://docs.microsoft.com/en-us/azure/app-service/app-service-web-tutorial-dotnetcore-sqldb
 
 # Display of running application. 
 
